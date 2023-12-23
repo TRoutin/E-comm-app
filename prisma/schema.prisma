@@ -1,0 +1,57 @@
+// prisma/schema.prisma
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated/client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url = "postgres://default:F0JAaoQd5uGR@ep-cool-resonance-51570660-pooler.eu-central-1.postgres.vercel-storage.com:5432/verceldb?pgbouncer=true&connect_timeout=15" // uses connection pooling
+  directUrl = "postgres://default:F0JAaoQd5uGR@ep-cool-resonance-51570660.eu-central-1.postgres.vercel-storage.com:5432/verceldb" // uses a direct connection
+}
+
+// schema.prisma
+
+// Define the Category model
+model Category {
+  id        Int       @id @default(autoincrement())
+  name      String
+  products  Product[] @relation("categoryProducts")
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+// Define the Product model
+model Product {
+  id          Int        @id @default(autoincrement())
+  name        String
+  description String
+  price       Float
+  categoryId  Int
+  category    Category   @relation("categoryProducts", fields: [categoryId], references: [id])
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  CartItem    CartItem[]
+}
+
+// Define the User model (for simplicity, users are not implemented in this example)
+model User {
+  id        Int        @id @default(autoincrement())
+  username  String
+  email     String
+  cartItems CartItem[] @relation("userCartItems")
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+}
+
+// Define the CartItem model
+model CartItem {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  productId Int
+  quantity  Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation("userCartItems", fields: [userId], references: [id])
+  product   Product  @relation(fields: [productId], references: [id])
+}
