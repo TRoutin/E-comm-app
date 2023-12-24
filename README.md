@@ -1,31 +1,141 @@
-# Create React App
+# E-commerce Web App
 
-This directory is a brief example of a [Create React App](https://github.com/facebook/create-react-app) site that can be deployed to Vercel with zero configuration.
+This is a simple e-commerce web application built with React, Node.js, Express, and PostgreSQL.
+Here is the link to check the app : [https://e-comm-app-nu.vercel.app/](https://e-comm-app-nu.vercel.app/)
 
-## Deploy Your Own
+## Table of Contents
 
-Deploy your own Create React App project with Vercel.
+- [Features](#features)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [Usage](#usage)
+- [Project Structure](#project-structure)
+- [Technologies Used](#technologies-used)
+- [Issues I got](#issues-i-got)
+- [Original Plan](#original-plan-vs-current-state)
+## Features
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/vercel/tree/main/examples/create-react-app&template=create-react-app)
+- Browse products by category
+- Add products to the shopping cart
+- View and manage the shopping cart
+- Basic user authentication (not implemented in this example)
 
-_Live Example: https://create-react-template.vercel.app/_
+## Getting Started
 
-## Available Scripts
+### Prerequisites
 
-In the project directory, you can run:
+- Node.js and npm installed
+- PostgreSQL database
 
-### `npm start`
+### Installation
 
-Runs the app in the development mode. Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Clone the repository:
 
-The page will reload when you make changes. You may also see any lint errors in the console.
+   ```bash
+   git clone https://github.com/TRoutin/E-comm-app
+   cd E-comm-app
+   ```
 
-### `npm test`
+2. Install dependencies for the backend (Node.js and Express):
 
-Launches the test runner in the interactive watch mode. See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+   ```bash
+   cd server
+   npm install
+   ```
 
-### `npm run build`
+3. Install dependencies for the frontend (React):
 
-Builds the app for production to the `build` folder.
+   ```bash
+   cd client
+   npm install
+   ```
 
-It correctly bundles React in production mode and optimizes the build for the best performance. The build is minified and the filenames include the hashes.
+4. Set up the PostgreSQL database and update the connection URL in `prisma/schema.prisma`.
+
+5. Apply database migrations:
+
+   ```bash
+   cd server
+   npx prisma migrate dev
+   ```
+
+## Usage
+
+1. Start the backend server:
+
+   ```bash
+   cd server
+   npm start
+   ```
+
+2. Start the frontend development server:
+
+   ```bash
+   cd client
+   npm start
+   ```
+
+3. Open your browser and visit [http://localhost:3000](http://localhost:3000) to view the application.
+
+## Project Structure
+
+- `client`: Frontend React application.
+- `server`: Backend Node.js and Express application.
+- `prisma`: Prisma configuration and database schema.
+
+## Technologies Used
+
+- React
+- Node.js
+- Express
+- Prisma
+- PostgreSQL
+
+## Issues Encountered
+
+### 1. Installation and Dependency Challenges
+- Faced difficulties setting up React and Node.js, leading to project initiation delays.
+- Wrestling with numerous dependencies resulted in unexpected conflicts, hindering progress.
+
+### 2. Unfamiliarity with React and Node.js
+- Lack of prior experience with React and Node.js posed a significant hurdle during development.
+- Navigating through these technologies for the first time contributed to a steep learning curve.
+
+### 3. Project Restarts and Repository Challenges
+- Encountered the need for multiple project restarts, indicating persistent issues with the codebase.
+- Frequent repository creations without achieving desired progress led to frustration.
+
+### 4. Version Control Dilemma
+- Initially planned to utilize pull requests for version control but had to abandon the approach due to non-functional code.
+- The absence of a streamlined version control process added complexity to collaborative efforts.
+
+## Original Plan vs. Current State
+
+### 1. Frontend Development
+#### Original Plan:
+- Display items in a grid, fetching data from the database.
+- Implement dynamic filtering based on database information.
+- Enable a shopping cart seamlessly interacting with the backend.
+#### Current State:
+- Project iterations led to a partial implementation, yet core features remain incomplete.
+
+### 2. Backend Operations
+#### Original Plan:
+- Develop a comprehensive API handling various operations.
+- Manage the shopping cart efficiently using a dedicated database table.
+#### Current State:
+- API operations are in progress, but challenges in backend functionality persist.
+
+### 3. Version Control and Deployment
+#### Original Plan:
+- Intended to use pull requests for version control, but aborted due to non-functional code.
+- Successfully deployed the application on Vercel, showcasing adaptability to new platforms.
+#### Current State:
+- Seeking a more robust version control strategy as development progresses.
+
+### 4. Documentation Efforts
+#### Original Plan:
+- Utilized Swagger.io for documentation, aiming for a professional appearance while maintaining structural integrity.
+#### Current State:
+- Documentation in place, demonstrating commitment to clarity and understanding.

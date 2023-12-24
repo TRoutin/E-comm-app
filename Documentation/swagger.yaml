@@ -1,0 +1,173 @@
+swagger: '2.0'
+info:
+  version: '0.1.0'
+  title: Web-app for E-Commerce
+
+schemes:
+  - http
+  - https
+
+paths:
+  /products:
+    get:
+      summary: Get all products
+      responses:
+        200:
+          description: Successful response
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Product'
+        500:
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/Error'
+
+  /cart:
+    get:
+      summary: Get shopping cart
+      responses:
+        200:
+          description: Successful response
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/CartItem'
+        500:
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/Error'
+
+  /cart/add:
+    post:
+      summary: Add item to shopping cart
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/AddToCartRequest'
+      responses:
+        200:
+          description: Successful response
+          schema:
+            $ref: '#/definitions/CartItem'
+        400:
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/Error'
+
+  /addCategory:
+    post:
+      summary: Add a new category
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/AddCategoryRequest'
+      responses:
+        200:
+          description: Successful response
+          schema:
+            $ref: '#/definitions/Category'
+        400:
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/Error'
+
+  /addUser:
+    post:
+      summary: Add a new user
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/AddUserRequest'
+      responses:
+        200:
+          description: Successful response
+          schema:
+            $ref: '#/definitions/User'
+        400:
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/Error'
+
+definitions:
+  Product:
+    type: object
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      description:
+        type: string
+      price:
+        type: number
+      categoryId:
+        type: integer
+
+  CartItem:
+    type: object
+    properties:
+      id:
+        type: integer
+      userId:
+        type: integer
+      productId:
+        type: integer
+      quantity:
+        type: integer
+
+  AddToCartRequest:
+    type: object
+    properties:
+      productId:
+        type: integer
+      quantity:
+        type: integer
+
+  AddCategoryRequest:
+    type: object
+    properties:
+      name:
+        type: string
+
+  User:
+    type: object
+    properties:
+      id:
+        type: integer
+      username:
+        type: string
+      email:
+        type: string
+
+  AddUserRequest:
+    type: object
+    properties:
+      username:
+        type: string
+      email:
+        type: string
+
+  Error:
+    type: object
+    properties:
+      error:
+        type: string
